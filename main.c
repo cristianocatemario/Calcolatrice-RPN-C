@@ -25,7 +25,7 @@ int main(void)
     int type;
     double op2;
     char s[MAXOP];
-    double pila[MAXOP]; //vettore in cui viene salvata la pila 
+    double vettpila[MAXOP]; //vettore in cui viene salvata la pila 
     int i; //dichiarazione di un'indice 
 
     while((type = getop(s)) != EOF)
@@ -34,7 +34,7 @@ int main(void)
         {
                 case NUMBER:
                         push(atof(s));
-                        pila[i] = atof(s);  //inserisco il valore
+                        vettpila[i] = atof(s);  //inserisco il valore
                         i++;
                         break;
                 case '+':
@@ -72,9 +72,9 @@ int main(void)
         }
         if (i != 0)
         {
-            printf("pila: ");
+            printf("pila: \n");
             for (int j = i - 1; j >= 0; j--)    //ciclo che scorre la pila al contrario stampandone i valori
-                printf("%g \n", pila[j]);
+                printf("%g \n", vettpila[j]);
         }
     }
     return 0;
