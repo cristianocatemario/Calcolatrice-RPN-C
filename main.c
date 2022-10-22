@@ -25,6 +25,8 @@ int main(void)
     int type;
     double op2;
     char s[MAXOP];
+    double pila[MAXOP]; //vettore in cui viene salvata la pila 
+    int i; //dichiarazione di un'indice 
 
     while((type = getop(s)) != EOF)
     {
@@ -32,6 +34,8 @@ int main(void)
         {
                 case NUMBER:
                         push(atof(s));
+                        pila[i] = atof(s);  //inserisco il valore
+                        i++;
                         break;
                 case '+':
                         push(pop()+pop());
@@ -59,11 +63,18 @@ int main(void)
                         break;
                 case '\n':
                         printf("\t%.8g\n",pop());
+                        i = 0;  //imposto l'indice a 0, svuotando così il buffer
                         break;
                 default:
                         printf("error: unknown command %s\n",s);
                         break;
 
+        }
+        if (i != 0)
+        {
+            printf("pila: ");
+            for (int j = i - 1; j >= 0; j--)    //ciclo che scorre la pila al contrario stampandone i valori
+                printf("%g \n", pila[j]);
         }
     }
     return 0;
